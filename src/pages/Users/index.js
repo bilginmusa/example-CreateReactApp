@@ -1,33 +1,23 @@
 import { useState, useEffect } from "react";
-import TableComponent from "../../components/Table";
-import FormComponent from "../../components/Form";
+import FormComponent from "../../newComponents/NewUserForm";
+import UserList from "../../newComponents/UserList";
 
 function Users() {
-  const [user, setUser] = useState({
-    userName: "Musa",
-    surname: "Bilgin",
-    age: 0,
-    gender: "1",
-  });
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     console.log("User Array:", users);
   }, [users]);
+
   return (
     <div>
-      <FormComponent
-        user={user}
-        setUser={setUser}
-        users={users}
-        setUsers={setUsers}
-      />
+      <FormComponent setUsers={setUsers} users={users} />
       <br />
       <br />
-      {users.length === 0 && <div>Henüz kullanıcı yok</div>}
-      {users.length > 0 && (
-        <TableComponent users={users} user={user} setUsers={setUsers} />
-      )}
+
+      <div>
+        <UserList users={users} setUsers={setUsers} />
+      </div>
     </div>
   );
 }
